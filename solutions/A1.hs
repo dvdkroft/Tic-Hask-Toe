@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 module A1 where
 
 import Data.Char (toUpper)
@@ -27,36 +28,57 @@ _SEP_ = ['_','|','_']
 -- *** Assignment 1-2 *** --
 
 -- Q#06
-data Square
+
+data Square = X | O | Empty
+    deriving (Show, Eq)
+
 
 
 -- Q#07
-data GameState
+data GameState = Xwon | Owon | Tie | InProgres
+    deriving (Show, Eq, Enum)
 
 
 -- Q#08
-
-
-
-
+type Player     =   Square
+type Row        =   [Square]
+type Line       =   [Square]
+type Board      =   [Row]
+type Move       =   (Int,Int)
 
 
 -- Q#09
+getFirstPlayer :: Bool -> Player
+getFirstPlayer value =
+    if value
+        then X
+        else O
 
-getFirstPlayer = undefined
+getFirstPlayer_ :: Bool -> Player
+getFirstPlayer_ value
+    | value = X
+    | not value = O
 
-
-getFirstPlayer_ = undefined
 
 -- Q#10
-
-showGameState gs = undefined
+showGameState :: GameState -> String
+showGameState gs = case gs of
+    Xwon        -> "X won"
+    Owon        -> "O won"
+    Tie         -> "Tie"
+    InProgres   -> "In Progress"
 
 -- Q#11
-
-switchPlayer = undefined
+switchPlayer :: Player -> Player
+switchPlayer player
+    | player == X = O
+    | player == O = X
+    | player == Empty = Empty
 
 
 -- Q#12
-
-showSquare = undefined
+showSquare :: Square -> String
+showSquare sq = case sq of
+    X       -> "X"
+    O       -> "O"
+    Empty   -> "_"
