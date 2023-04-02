@@ -12,7 +12,7 @@ promptPlayer :: Player -> String
 promptPlayer p = concat ["Player ",showSquare p, "'s turn: enter a row and column position (ex. A1)"]
 
 -- Q#02
-
+_RANGE_ :: [Int]
 _RANGE_ = [0 .. _SIZE_-1]
 
 -- Q#03
@@ -51,8 +51,8 @@ formatLine input = concat [_SEP_,intercalate _SEP_ input,_SEP_]
 -- *** Assignment 2-2 *** --
 
 -- Q#08
-
-isMoveInBounds = undefined
+isMoveInBounds :: Move -> Bool
+isMoveInBounds (x,y) = x>=0 && x<=_SIZE_ && y >= 0 && y <= _SIZE_
 
 -- Q#09
 
