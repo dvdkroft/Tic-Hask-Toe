@@ -8,41 +8,45 @@ import Data.List (intercalate)
 -- *** Assignment 2-1 *** --
 
 -- Q#01
-
-promptPlayer = undefined
+promptPlayer :: Player -> String
+promptPlayer p = concat ["Player ",showSquare p, "'s turn: enter a row and column position (ex. A1)"]
 
 -- Q#02
 
-_RANGE_ = undefined
+_RANGE_ = [0 .. _SIZE_-1]
 
 -- Q#03
+isDigit :: Char -> Bool
+isDigit c = c `elem` ['0'..'9']
 
-isDigit = undefined
-
-
-readDigit = undefined
+readDigit :: Char -> Int
+readDigit c 
+    | isDigit c = read [c]
+    | otherwise = -1
 
 -- Q#04
 
-_EMPTY_ROW_ = undefined
+_EMPTY_ROW_ = replicate _SIZE_ E
 
 
-_EMPTY_BOARD_ = undefined
+_EMPTY_BOARD_ = replicate _SIZE_ _EMPTY_ROW_
 
 -- Q#05
+isTied :: Board -> Bool
+isTied b = notElem E (concat b)
 
-isTied = undefined
 
+_TIED_BOARD_ :: Board
+_TIED_BOARD_ = [[X, O, O],[O, X, X],[O, X, O]]
 
-_TIED_BOARD_ = undefined
 
 -- Q#06
-
-indexRowStrings = undefined
+indexRowStrings :: [String] -> [(Char,String)]
+indexRowStrings input = zip ['A' ..] input
 
 -- Q#07
-
-formatLine = undefined
+formatLine :: [String] -> String
+formatLine input = concat [_SEP_,intercalate _SEP_ input,_SEP_]
 
 -- *** Assignment 2-2 *** --
 

@@ -6,7 +6,7 @@ import Data.Char (toUpper)
 -- *** Assignment 1-1 *** --
 
 -- Q#01
-
+_SIZE_ :: Int
 _SIZE_ = 3
 
 -- Q#02
@@ -29,7 +29,7 @@ _SEP_ = ['_','|','_']
 
 -- Q#06
 
-data Square = X | O | Empty
+data Square = X | O | E
     deriving (Show, Eq)
 
 
@@ -73,7 +73,7 @@ switchPlayer :: Player -> Player
 switchPlayer player
     | player == X = O
     | player == O = X
-    | player == Empty = Empty
+    | player == E = E
 
 
 -- Q#12
@@ -81,4 +81,4 @@ showSquare :: Square -> String
 showSquare sq = case sq of
     X       -> "X"
     O       -> "O"
-    Empty   -> "_"
+    E       -> "_"
