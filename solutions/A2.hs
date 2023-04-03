@@ -55,9 +55,12 @@ isMoveInBounds :: Move -> Bool
 isMoveInBounds (x,y) = x>=0 && x<=_SIZE_ && y >= 0 && y <= _SIZE_
 
 -- Q#09
+stringToMove :: String -> Move
+stringToMove [] = _INVALID_MOVE_
+stringToMove [x,y] = (convertRowIndex x, readDigit y)
+stringToMove _ = _INVALID_MOVE_
 
-stringToMove = undefined
 
 -- Q#10
-
+replaceSquareInRow :: Player -> Int -> Int -> Row 
 replaceSquareInRow = undefined
