@@ -1,4 +1,6 @@
 module Sandbox where
+import A1
+import A2
 -- type Pokemon = (Name, Id, [Power])
 
 -- type Company = (Name, Year, )
@@ -26,9 +28,16 @@ fifth (_:(_:(_:(_:(x:_))))) = x
 fst' :: (a,b,c) -> a
 fst' (a,b,c) = a
 
-
 -- Get the fifth element of a list
 --fifth :: [a] -> a
 --fifth (_:_:_:_:x:_) = x
 
 -- Tuple
+
+-- Replace a list
+l1= [X,O,X]
+
+s = splitAt 1 l1
+
+e = head _EMPTY_BOARD_
+t = last _TIED_BOARD_

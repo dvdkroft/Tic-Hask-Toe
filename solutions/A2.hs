@@ -4,6 +4,7 @@ module A2 where
 
 import A1
 import Data.List (intercalate)
+import Data.IORef (newIORef)
 
 -- *** Assignment 2-1 *** --
 
@@ -20,7 +21,7 @@ isDigit :: Char -> Bool
 isDigit c = c `elem` ['0'..'9']
 
 readDigit :: Char -> Int
-readDigit c 
+readDigit c
     | isDigit c = read [c]
     | otherwise = -1
 
@@ -52,7 +53,8 @@ formatLine input = concat [_SEP_,intercalate _SEP_ input,_SEP_]
 
 -- Q#08
 isMoveInBounds :: Move -> Bool
-isMoveInBounds (x,y) = x>=0 && x<=_SIZE_ && y >= 0 && y <= _SIZE_
+--isMoveInBounds (x,y) = x>=0 && x<=_SIZE_ && y >= 0 && y <= _SIZE_
+isMoveInBounds (x,y) = and [x>=0, x<=_SIZE_, y >= 0, y <= _SIZE_]
 
 -- Q#09
 stringToMove :: String -> Move
@@ -62,5 +64,11 @@ stringToMove _ = _INVALID_MOVE_
 
 
 -- Q#10
-replaceSquareInRow :: Player -> Int -> Int -> Row 
-replaceSquareInRow = undefined
+replaceSquareInRow :: Player -> Int -> Row -> Row
+replaceSquareInRow p c r 
+    | c < 0 || c >= _SIZE_  = r
+    | null r                = []
+    | otherwise             = x ++ p : xs
+        where (x,_:xs) = splitAt c r
+rsX = replaceSquareInRow X
+rsO = replaceSquareInRow O
