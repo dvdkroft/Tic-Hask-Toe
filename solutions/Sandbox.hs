@@ -41,3 +41,4 @@ s = splitAt 1 l1
 
 e = head _EMPTY_BOARD_
 t = last _TIED_BOARD_
+

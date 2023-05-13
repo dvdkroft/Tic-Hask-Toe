@@ -8,42 +8,56 @@ import Data.List (transpose)
 -- *** Assignment 3-1 ***
 
 -- Q#01
+showInts :: [Int] -> [String]
+showInts [] = []
+showInts (x:xs) = show x : showInts xs
 
-showInts = undefined
 
-
-_HEADER_ = undefined
+_HEADER_ = " " ++ formatLine (showInts _RANGE_)
 
 -- Q#02
-
-showSquares = undefined
+showSquares :: [Square] -> [String]
+showSquares [] = []
+showSquares (x:xs) = showSquare x : showSquares xs
 
 
 -- Q#03
+formatRows :: [Row] -> [String]
+formatRows [] = []
+formatRows (x:xs) = formatLine (showSquares x) : formatRows xs
 
-formatRows = undefined
 
 -- Q#04
+isColEmpty :: Row -> Int -> Bool
+isColEmpty [] _             = False
+isColEmpty (x:xs) 0         = x == E
+isColEmpty (_:xs) colIndex  = isColEmpty xs (colIndex-1)
 
-isColEmpty = undefined
 
 -- Q#05
+dropFirstCol :: Board -> Board
+dropFirstCol = map tail
 
-dropFirstCol = undefined
-
-
-dropLastCol = undefined
+dropLastCol :: Board -> Board
+dropLastCol = map init
 
 -- Q#06
+getDiag1 :: Board -> Line
+getDiag1 [] = []
+getDiag1 ([]:_) = []
+getDiag1 ((x:_):xs) = x : getDiag1 (map tail xs)
 
-getDiag1 = undefined
+getDiag2 :: Board -> Line
+getDiag2 [] = []
+getDiag2 ([]:_) = []
+getDiag2 rows = last (map init rows)
 
-
-getDiag2 = undefined
-
-
-getAllLines = undefined
-
+getAllLines :: Board -> [Line]
+getAllLines board = horizontalLines ++ verticalLines ++ diagonalLines
+  where
+    horizontalLines = board
+    verticalLines = transpose board
+    diagonalLines = [getDiag1 board, getDiag2 board]
 -- *** Assignment 3-2 ***
 
 -- Q#07
