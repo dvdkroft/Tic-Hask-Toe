@@ -1,6 +1,7 @@
 module Sandbox where
 import A1
 import A2
+import Data.Bits (Bits(xor))
 -- type Pokemon = (Name, Id, [Power])
 
 -- type Company = (Name, Year, )
@@ -42,3 +43,6 @@ s = splitAt 1 l1
 e = head _EMPTY_BOARD_
 t = last _TIED_BOARD_
 
+sum' :: [Int] -> Int
+sum' []     = 0
+sum' (x:xs) = sum' xs + x
